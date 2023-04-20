@@ -19,12 +19,14 @@ namespace Topic_2_Monogame
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
-            _graphics.PreferredBackBufferWidth = 800;  
-            _graphics.PreferredBackBufferHeight = 600;
+            
         }
 
         protected override void Initialize()
         {
+            _graphics.PreferredBackBufferWidth = 800;
+            _graphics.PreferredBackBufferHeight = 600;
+            _graphics.ApplyChanges();
             base.Initialize();
         }
 
