@@ -10,7 +10,7 @@ namespace Topic_2_Monogame
         private SpriteBatch _spriteBatch;
 
         Texture2D yellowCircleTexutre;
-        Texture2D blackCircleTexutre;
+        Texture2D blackCircleTexture;
         Texture2D blackRectangleTexture;
         Texture2D blackSquareTexture;
 
@@ -19,20 +19,23 @@ namespace Topic_2_Monogame
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+            _graphics.PreferredBackBufferWidth = 800;  
+            _graphics.PreferredBackBufferHeight = 600;
         }
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+            yellowCircleTexutre = Content.Load<Texture2D>("yellow_circle");
+            blackCircleTexture = Content.Load<Texture2D>("black_circle");
+            blackRectangleTexture = Content.Load<Texture2D>("black_rectangle");
+            blackSquareTexture = Content.Load<Texture2D>("black_square");
 
-            // TODO: use this.Content to load your game content here
         }
 
         protected override void Update(GameTime gameTime)
@@ -40,16 +43,25 @@ namespace Topic_2_Monogame
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
-
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.White);
 
-            // TODO: Add your drawing code here
+            _spriteBatch.Begin();
+
+
+            _spriteBatch.Draw(yellowCircleTexutre, new Rectangle(150, 0, 450, 450), Color.White);
+            _spriteBatch.Draw(blackCircleTexture, new Rectangle(268, 100, 10, 10), Color.White);
+            _spriteBatch.Draw(blackCircleTexture, new Rectangle(468, 100, 10, 10), Color.White);
+            _spriteBatch.Draw(blackRectangleTexture, new Rectangle(125, 300, 500, 50), Color.White);
+            _spriteBatch.Draw(blackSquareTexture, new Rectangle(375, 200, 10, 10), Color.White);
+
+
+            _spriteBatch.End();
+
 
             base.Draw(gameTime);
         }
